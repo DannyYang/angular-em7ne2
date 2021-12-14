@@ -5,27 +5,33 @@ import { Component } from '@angular/core';
   template: `
     <h2>Should mankind colonize the Universe?</h2>
     <h3>Agree: {{agreed}}, Disagree: {{disagreed}}</h3>
-    <app-voter *ngFor="let voter of voters"
-      [name]="voter"
+    <app-voter *ngFor="let user of userList"
+      [user]="user"
       (voted)="onVoted($event)"
-      (test)="onTest($event)">
+      
+      >
     </app-voter>
   `,
 })
 
-// (voted)="onVoted($event)"
+// (voted)="onVoted($event)" // (test)="onTest($event)"
 export class VoteTakerComponent {
   agreed = 0;
   disagreed = 0;
   voters = ['Narco', 'Celeritas', 'Bombasto'];
+  userList = [
+    { name: 'a', age: 32, vote: null },
+    { name: 'b', age: 23, vote: null },
+    { name: 'c', age: 21, vote: null },
+  ];
 
   onVoted(agreed: boolean) {
     agreed ? this.agreed++ : this.disagreed++;
   }
 
-  onTest(agreed: boolean) {
-    agreed ? this.agreed++ : this.disagreed++;
-  }
+  // onTest(agreed: boolean) {
+  //   agreed ? this.agreed++ : this.disagreed++;
+  // }
 }
 
 /*
